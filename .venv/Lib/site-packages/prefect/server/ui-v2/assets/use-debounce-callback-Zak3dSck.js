@@ -1,0 +1,2 @@
+import{r as e}from"./rolldown-runtime-Dw2cE7zH.js";import{s as t}from"./vendor-codemirror-BWtI98_k.js";var n=e(t(),1),r=(e,t,r=!1)=>{let i=(0,n.useRef)(null),a=(0,n.useRef)(e),o=(0,n.useRef)(!0);return a.current=e,(0,n.useCallback)((...e)=>{let n=()=>{a.current(...e),o.current=!0};i.current&&clearTimeout(i.current),r&&o.current?(n(),o.current=!1):i.current=setTimeout(()=>{r||n(),o.current=!0},t)},[t,r])};export{r as t};
+//# sourceMappingURL=use-debounce-callback-Zak3dSck.js.map

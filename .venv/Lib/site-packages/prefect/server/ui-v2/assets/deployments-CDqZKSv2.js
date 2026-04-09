@@ -1,0 +1,2 @@
+import{o as e}from"./vendor-codemirror-BWtI98_k.js";import{t}from"./error-utils-B8vfawgI.js";import{t as n}from"./route-error-state-pbiindQO.js";import{t as r}from"./header-CYMIXW39.js";var i=e(),a=function({error:e,reset:a}){let o=t(e,`Failed to load deployments`);if(o.type!==`server-error`&&o.type!==`client-error`)throw e;return(0,i.jsxs)(`div`,{className:`flex flex-col gap-4`,children:[(0,i.jsx)(r,{}),(0,i.jsx)(n,{error:o,onRetry:a})]})};export{a as errorComponent};
+//# sourceMappingURL=deployments-CDqZKSv2.js.map

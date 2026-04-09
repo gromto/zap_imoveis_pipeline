@@ -1,0 +1,2 @@
+import{o as e}from"./vendor-codemirror-BWtI98_k.js";import{n as t,r as n,t as r}from"./work-queue-icon-text-DOFnvNKK.js";var i=e(),a=({deployment:e})=>(0,i.jsxs)(`div`,{className:`flex items-center gap-4`,children:[(0,i.jsx)(n,{flowId:e.flow_id}),e.work_pool_name&&(0,i.jsx)(t,{workPoolName:e.work_pool_name}),e.work_pool_name&&e.work_queue_name&&(0,i.jsx)(r,{workPoolName:e.work_pool_name,workQueueName:e.work_queue_name,showLabel:!0,showStatus:!0})]});export{a as t};
+//# sourceMappingURL=deployment-links-C7l0lzby.js.map

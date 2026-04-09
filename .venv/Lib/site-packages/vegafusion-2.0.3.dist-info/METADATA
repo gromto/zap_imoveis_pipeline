@@ -1,0 +1,27 @@
+Metadata-Version: 2.3
+Name: vegafusion
+Version: 2.0.3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Requires-Dist: arro3-core
+Requires-Dist: packaging
+Requires-Dist: narwhals >=1.42
+Provides-Extra: embed
+License-File: LICENSE
+Summary: Core tools for using VegaFusion from Python
+Keywords: vega,altair,vegafusion,arrow
+Author: VegaFusion Contributors
+License: BSD-3-Clause
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Homepage, https://vegafusion.io
+Project-URL: Repository, https://github.com/hex-inc/vegafusion
+Project-URL: Documentation, https://vegafusion.io
+
+## vegafusion
+This crate contains the Python library that embeds the VegaFusion Runtime and select Connection. This crate uses PyO3 to expose the Rust logic to CPython. 

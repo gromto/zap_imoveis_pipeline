@@ -1,0 +1,39 @@
+# -------------------------------------------------
+# "of-nouns" which are used without modifiers.
+#
+# Example:
+#     big dog of <emphasis>
+# -------------------------------------------------
+
+max_length = 13
+
+# Science
+biology
+chemistry
+education
+experiment
+mathematics
+psychology
+reading
+zoology
+
+# Art
+cubism
+painting
+
+# Misc
+advertising
+agreement
+climate
+competition
+effort
+emphasis
+forgiveness
+foundation
+judgment
+memory
+opportunity
+perspective
+priority
+promise
+teaching

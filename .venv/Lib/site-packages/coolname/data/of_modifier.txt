@@ -1,0 +1,135 @@
+# ==============================================
+# Adjective for "of-noun"
+#
+# Example:
+#     black dog of <ultimate> achievement
+#
+# If you want to contribute, check that the word
+# makes sense in following phrases:
+#     black dog of <adjective> faith
+#     black dog of <adjective> perfection
+#     black dog of <adjective> storm
+#     black dog of <adjective> coffee
+# ==============================================
+
+max_length = 13
+
+absolute
+abstract
+algebraic
+amazing
+amusing
+ancient
+angelic
+astonishing
+authentic
+awesome
+beautiful
+classic
+delightful
+demonic
+desirable
+easy
+eminent
+enjoyable
+eternal
+excellent
+exotic
+extreme
+fabulous
+famous
+fantastic
+fascinating
+flawless
+fortunate
+glorious
+good
+great
+heavenly
+historical
+holistic
+hypothetical
+ideal
+illegal
+imaginary
+immense
+imminent
+impossible
+impressive
+improbable
+incredible
+inescapable
+inevitable
+infinite
+inspiring
+interesting
+legal
+legendary
+lucky
+magic
+majestic
+major
+marvelous
+massive
+mysterious
+noble
+nonconcrete
+nonstop
+normal
+luxurious
+necessary
+objective
+optimal
+original
+pastoral
+perfect
+perpetual
+phenomenal
+pleasurable
+pragmatic
+premium
+radical
+rampant
+regular
+remarkable
+satisfying
+serious
+scientific
+sexy
+sheer
+significant
+simple
+silent
+spectacular
+splendid
+stereotyped
+stimulating
+strange
+striking
+strongest
+sublime
+subtle
+sudden
+sufficient
+terrific
+theoretical
+therapeutic
+total
+ultimate
+uncanny
+undeniable
+unearthly
+unexpected
+unknown
+unmatched
+unmistakable
+unnatural
+unprecedented
+unreal
+unusual
+uplifting
+utter
+weird
+wonderful
+wondrous
+
