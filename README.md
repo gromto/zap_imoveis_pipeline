@@ -2,10 +2,9 @@
 
 End-to-end data pipeline that scrapes real estate listings from Zap Imóveis, processes the data, and create a visualization heatmap using Streamlit.
 
+*DISCLAIMER: This project is intended for learning and portfolio purposes.*
 
-## DISCLAIMER: This project is intended for learning and portfolio purposes.
-
-![Heatmap Example](example_gif.png)
+![Heatmap Example](example_gif.gif)
 
 ---
 
