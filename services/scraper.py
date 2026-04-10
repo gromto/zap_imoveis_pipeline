@@ -429,12 +429,12 @@ class ScraperZap:
     # PARQUET
     # =========================
 
-    def save_parquet(self, df):
+    def save_parquet(self, df, table_name='dados_imoveis_raw'):
         path = os.path.join(os.getcwd(), 'data', 'bronze')
         os.makedirs(path, exist_ok=True)
 
         df.to_parquet(
-            os.path.join(path, 'dados_imoveis_raw.parquet'),
+            os.path.join(path, f'{table_name}'),
             partition_cols=['ano', 'mes', 'dia'],
             index=False
         )
