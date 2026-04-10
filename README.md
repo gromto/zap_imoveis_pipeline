@@ -1,4 +1,4 @@
-# 🏙️ Zap Imóveis Scraper
+# 🏙️ Zap Imóveis Pipeline
 
 End-to-end data pipeline that scrapes real estate listings from Zap Imóveis, processes the data, and create a visualization heatmap using Streamlit.
 
