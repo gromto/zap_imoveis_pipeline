@@ -8,6 +8,7 @@ import pytz
 import pandas as pd
 from bs4 import BeautifulSoup
 import undetected_chromedriver as uc
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -18,6 +19,13 @@ from selenium.common.exceptions import (
     WebDriverException,
     TimeoutException
 )
+
+load_dotenv()
+db_name = os.getenv("DB_NAME")
+db_user = os.getenv("DB_USER")
+db_pass = os.getenv("DB_PASSWORD")
+db_host = os.getenv("DB_HOST")
+db_port = os.getenv("DB_PORT")
 
 class ScraperZap:
 
@@ -35,6 +43,10 @@ class ScraperZap:
         )
 
         self.driver = self._get_driver()
+        self.engine = create_engine(
+        f"postgresql+psycopg2://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}",
+        pool_pre_ping=True
+        )
         print(f"[*] Initialized Scraper for: {tipo} | {transacao} | {local} | {zona} | {precomin} - {precomax}")
 
     # =========================
@@ -399,10 +411,7 @@ class ScraperZap:
             print("[!] Empty dataframe, skipping save")
             return
         
-        engine = create_engine(
-            f"postgresql+psycopg2://postgres:postgres@localhost:5432/scraping",
-            pool_pre_ping=True
-        )
+        engine = self.engine
         
         df.to_sql(
             table_name,

@@ -1,15 +1,23 @@
 from sqlalchemy import create_engine, text
+from dotenv import load_dotenv
 import json
 from pathlib import Path
+
+load_dotenv()
+db_name = os.getenv("DB_NAME")
+db_user = os.getenv("DB_USER")
+db_pass = os.getenv("DB_PASSWORD")
+db_host = os.getenv("DB_HOST")
+db_port = os.getenv("DB_PORT")
 
 
 class VisualMap:
 
     def __init__(self):
         self.engine = create_engine(
-            "postgresql+psycopg2://postgres:postgres@localhost:5432/scraping"
+        f"postgresql+psycopg2://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}",
+        pool_pre_ping=True
         )
-
     def generate_geojson(self):
 
         sql_path = Path(__file__).parent.parent / "sql" / "features_table_creation.sql"
@@ -18,7 +26,6 @@ class VisualMap:
             sql = f.read()
             with self.engine.begin() as conn:
                 conn.exec_driver_sql(sql)
-                print('executed!')
 
         query = """
             SELECT jsonb_build_object(

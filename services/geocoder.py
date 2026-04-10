@@ -1,14 +1,21 @@
 import os
 import time
 from sqlalchemy import create_engine
-from sqlalchemy import text
+from dotenv import load_dotenv
 from psycopg2.extras import execute_values
 import pandas as pd
 from geopy.geocoders import Nominatim
 import googlemaps
 import random
 
-KEY = 'AIzaSyBHBaG0KgcA88-oOOR3XWxYKe7DkjNhqeE'
+load_dotenv()
+api_key = os.getenv("GOOGLE_MAPS_API_KEY")
+db_name = os.getenv("DB_NAME")
+db_user = os.getenv("DB_USER")
+db_pass = os.getenv("DB_PASSWORD")
+db_host = os.getenv("DB_HOST")
+db_port = os.getenv("DB_PORT")
+
 
 class GeoCoder:
 
@@ -18,15 +25,14 @@ class GeoCoder:
 
     def __init__(self):
         self.geolocator = Nominatim(user_agent="rj-analise")
-        # key = os.getenv("GOOGLEMAPS_API_KEY")
-        key = KEY
+        key = api_key
 
         if not key:
-            raise ValueError("GOOGLEMAPS_API_KEY not found in environment")
+            raise ValueError("GOOGLE_MAPS_API_KEY not found in environment")
         
         self.gmaps = googlemaps.Client(key=key)
         self.engine = create_engine(
-        "postgresql+psycopg2://postgres:postgres@localhost:5432/scraping",
+        f"postgresql+psycopg2://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}",
         pool_pre_ping=True
         )
         self.cache = {}
