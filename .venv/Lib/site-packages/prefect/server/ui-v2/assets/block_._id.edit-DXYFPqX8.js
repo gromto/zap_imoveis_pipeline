@@ -1,2 +1,0 @@
-import{o as e}from"./vendor-codemirror-BWtI98_k.js";import{t}from"./error-utils-B8vfawgI.js";import{t as n}from"./route-error-state-pbiindQO.js";var r=e(),i=function({error:e,reset:i}){let a=t(e,`Failed to load block`);if(a.type!==`server-error`&&a.type!==`client-error`)throw e;return(0,r.jsxs)(`div`,{className:`flex flex-col gap-4`,children:[(0,r.jsx)(`div`,{children:(0,r.jsx)(`h1`,{className:`text-2xl font-semibold`,children:`Edit Block`})}),(0,r.jsx)(n,{error:a,onRetry:i})]})};export{i as errorComponent};
-//# sourceMappingURL=block_._id.edit-DXYFPqX8.js.map

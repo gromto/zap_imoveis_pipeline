@@ -1,2 +1,0 @@
-import{d as t,v as n,S as k,j as l,f as m,u as p}from"./index-Bf9L6UVa.js";const c=t({__name:"WorkQueueToWorkPoolQueueRedirect",setup(w){const u=n("workQueueId"),s=k(),a=l(s.workQueues.getWorkQueue,[u]),o=p(),r=m();return a.promise().then(({response:e})=>{if(!e.workPoolName){o.replace(r.workPools());return}o.replace(r.workPoolQueue(e.workPoolName,e.name))}),()=>{}}});export{c as default};
-//# sourceMappingURL=WorkQueueToWorkPoolQueueRedirect-DJZTvjVT-BSkw2-uV.js.map

@@ -1,2 +1,0 @@
-import{o as e}from"./vendor-codemirror-BWtI98_k.js";import{r as t}from"./button-Cnixggd2.js";var n=e(),r=({alt:e,logoUrl:t,size:r=`sm`})=>(0,n.jsx)(`img`,{alt:e,src:t??void 0,className:i({size:r})}),i=t(`border border-border bg-muted rounded`,{variants:{size:{sm:`size-8`,lg:`size-14`}}});export{r as t};
-//# sourceMappingURL=block-type-logo-8zBYy8rR.js.map
