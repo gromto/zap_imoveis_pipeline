@@ -9,7 +9,7 @@ def generate_map():
     visual = VisualMap()
     geojson = visual.generate_geojson()
 
-    with open("data.geojson", "w", encoding="utf-8") as f:
+    with open(r"streamlit\data\data.geojson", "w", encoding="utf-8") as f:
         json.dump(geojson, f)
 
     logger.info("GeoJSON salvo com sucesso!")

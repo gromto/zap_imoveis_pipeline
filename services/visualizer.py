@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, text
 from dotenv import load_dotenv
 import json
 from pathlib import Path
+import pandas as pd
 
 load_dotenv()
 db_name = os.getenv("DB_NAME")
@@ -19,6 +20,7 @@ class VisualMap:
         f"postgresql+psycopg2://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}",
         pool_pre_ping=True
         )
+
     def generate_geojson(self):
 
         sql_path = Path(__file__).parent.parent / "sql" / "features_table_creation.sql"
@@ -68,10 +70,28 @@ class VisualMap:
             raise ValueError("GeoJSON vazio")
 
         return geojson
+    
+    def get_df(self):
+        query = """
+            SELECT endereco, bairro, zona_corrigida, total_anuncios, avg_preco_m2, median_preco, median_area, avg_quartos, avg_banheiros, avg_garagens
+            FROM agg_ruas_venda
+            WHERE total_anuncios >= 5
+        """
+
+        with self.engine.connect() as conn:
+            df = pd.read_sql(text(query), conn)
+
+        if df.empty:
+            raise ValueError("DataFrame vazio")
+
+        return df
 
 
 if __name__ == "__main__":
     visual = VisualMap()
     geojson = visual.generate_geojson()
-    with open("data.geojson", "w", encoding="utf-8") as f:
+    with open("streamlit/data/data.geojson", "w", encoding="utf-8") as f:
         json.dump(geojson, f)
+    datajson = visual.get_df()
+    with open("streamlit/data/data.json", "w", encoding="utf-8") as f:
+        json.dump(datajson.to_dict(orient="records"), f)
