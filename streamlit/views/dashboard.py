@@ -44,7 +44,7 @@ def render():
     # =========================
     # SIDEBAR
     # =========================
-    st.sidebar.header("Filters")
+    st.sidebar.header("Filtros")
 
     zonas = sorted(df["zona_corrigida"].dropna().unique())
 
@@ -84,9 +84,9 @@ def render():
 
     c1, c2, c3 = st.columns(3)
 
-    c1.metric("Avg Price/m²", f"R$ {int(df['avg_preco_m2'].mean()):,}")
-    c2.metric("Median Price", f"R$ {int(df['median_preco'].median()):,}")
-    c3.metric("Listings", f"{int(df['total_anuncios'].sum()):,}")
+    c1.metric("Preço médio m²", f"R$ {int(df['avg_preco_m2'].mean()):,}")
+    c2.metric("Preço mediano", f"R$ {int(df['median_preco'].median()):,}")
+    c3.metric("Anúncios", f"{int(df['total_anuncios'].sum()):,}")
 
     # =========================
     # DISTRIBUTION
@@ -110,10 +110,62 @@ def render():
     st.plotly_chart(fig, use_container_width=True)
 
     # =========================
+    # FORMATTERS
+    # =========================    
+
+    def format_br_int(x):
+        if pd.isna(x):
+            return ""
+        return f"{int(x):,}".replace(",", ".")
+
+    def format_br_float(x):
+        if pd.isna(x):
+            return ""
+        return f"{x:.2f}".replace(".", ",")
+
+    def format_currency(x):
+        if pd.isna(x):
+            return ""
+        return f"R$ {int(x):,}".replace(",", ".")
+
+    # =========================
     # TABLE
     # =========================
+    styled_df = df.style.format({
+        "avg_preco_m2": "R$ {:,.0f}".replace(",", "X").replace(".", ",").replace("X", "."),
+        "median_preco": "R$ {:,.0f}".replace(",", "X").replace(".", ",").replace("X", "."),
+        "median_area": "{:,.0f}".replace(",", "X").replace(".", ",").replace("X", "."),
+        "avg_quartos": "{:.2f}".replace(".", ","),
+        "avg_banheiros": "{:.2f}".replace(".", ","),
+        "avg_garagens": "{:.2f}".replace(".", ","),
+        "total_anuncios": "{:,.0f}".replace(",", "X").replace(".", ",").replace("X", "."),
+    })
+
+    df = df.rename(columns={
+    "endereco": "Rua",
+    "bairro": "Bairro",
+    "zona_corrigida": "Zona",
+    "total_anuncios": "Anúncios",
+    "avg_preco_m2": "Preço médio m²",
+    "median_preco": "Preço mediano",
+    "median_area": "Área mediana (m²)",
+    "avg_quartos": "Quartos",
+    "avg_banheiros": "Banheiros",
+    "avg_garagens": "Garagens",
+    })
+
+    styled_df = df.style.format({
+    "Preço médio m² (R$)": format_currency,
+    "Preço mediano (R$)": format_currency,
+    "Área mediana (m²)": format_br_int,
+    "Quartos": format_br_float,
+    "Banheiros": format_br_float,
+    "Garagens": format_br_float,
+    "Anúncios": format_br_int,
+    })
+
     st.dataframe(
-        df,
+        styled_df,
         use_container_width=True,
-        height=260 
+        height=260
     )
