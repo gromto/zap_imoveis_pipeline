@@ -298,15 +298,12 @@ class ScraperZap:
             if not h2:
                 return None, None
 
-            # Remove span (description)
             span = h2.find('span')
             if span:
                 span.extract()
 
-            # Now only location remains
             text = h2.get_text(strip=True)
 
-            # Example: "Três Poços, Volta Redonda"
             parts = [p.strip() for p in text.split(",")]
 
             bairro = parts[0] if len(parts) > 0 else None
@@ -324,11 +321,11 @@ class ScraperZap:
 
         text = el.get_text(" ", strip=True).lower()
 
-        # price
+        # Price
         match = re.search(r'r\$\s*([\d\.]+)', text)
         price = float(match.group(1).replace('.', '')) if match else 0.0
 
-        # period
+        # Period
         if 'mês' in text:
             period = 'mensal'
         elif 'dia' in text:
@@ -368,7 +365,6 @@ class ScraperZap:
 
             text = el.get_text(strip=True)
 
-            # extract number from text (e.g. "106 m²" or "3")
             match = re.search(r'\d+', text)
             return float(match.group()) if match else 0.0
 
@@ -446,6 +442,22 @@ class ScraperZap:
     # =========================
 
     def run(self):
+
+
+        # Each iteration:
+        # - Scrapes listings within the current price range
+        # - Stores raw data and execution logs (duplicates may occur by design)
+        # - Uses the P98 price as the next lower bound to avoid issues with outliers and ensure pagination continues smoothly.
+        # - Sometimes the next P_98 value was the same as the current min price, so I added a 2% buffer to ensure progress. 
+        #   This is a common technique to handle cases where the price distribution has many listings at the same price point, 
+        #   which can cause pagination to get stuck.
+        #
+        # Note:
+        # Zap may return listings outside the requested price range, so using
+        # the absolute max price can break pagination. P98 provides a safer cutoff.
+        #
+        # The loop stops when fewer than 500 listings remain, which can be
+        # retrieved without further pagination.
 
         remaning = 501
 

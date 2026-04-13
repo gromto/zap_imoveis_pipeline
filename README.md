@@ -44,7 +44,7 @@ This project implements a complete data pipeline:
 * dbt
 * Prefect
 * GeoJSON
-* Web scraping
+* Selenium / Undetected Chromedrive
 
 ---
 

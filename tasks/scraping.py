@@ -5,6 +5,12 @@ from services.scraper import ScraperZap
 def scrape_data():
     logger = get_run_logger()
 
+    # Scrape data by iterating over zones and transaction types.
+    # This approach minimizes the number of requests while still
+    # ensuring full pagination coverage across all combinations
+    # for the city of Rio de Janeiro.
+
+
     for zona in ['zona-sul','zona-norte','zona-oeste','zona-central']:
         for transacao in ['venda', 'aluguel']:
 
