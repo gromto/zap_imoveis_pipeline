@@ -4,7 +4,7 @@ End-to-end data pipeline that scrapes real estate listings from Zap Imóveis, pr
 
 *DISCLAIMER: This project is intended for learning and portfolio purposes.*
 
-![Heatmap Example](example_gif.gif)
+![Heatmap Example](example_gif2.gif)
 
 ---
 
@@ -29,7 +29,7 @@ This project implements a complete data pipeline:
 ├── sql/                # Raw SQL queries
 ├── imoveis_dbt/        # dbt project
 ├── data/               # Generated data artifacts (ignored in Git)
-├── streamlit/          # Streamlit app
+├── streamlit/          # Streamlit app (Map + Dashboard)
 ├── requirements.txt
 ├── .env.example
 └── README.md
@@ -104,4 +104,5 @@ streamlit run main.py
 ## 👨‍💻 Author
 
 Gabriel Romeo Tomaz
-https://www.linkedin.com/in/gabrielromeo/
+Linkedin: https://www.linkedin.com/in/gabrielromeo/
+Website: https://gabrielrt.com/
