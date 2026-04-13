@@ -91,6 +91,9 @@ def render():
     # =========================
     # DISTRIBUTION
     # =========================
+
+    st.subheader("Preço por m² por rua")
+
     fig = px.histogram(
         df,
         x="avg_preco_m2",
@@ -129,8 +132,11 @@ def render():
         return f"R$ {int(x):,}".replace(",", ".")
 
     # =========================
-    # TABLE
+    # RUA TABLE
     # =========================
+
+    st.subheader("Tabela de ruas")
+
     styled_df = df.style.format({
         "avg_preco_m2": "R$ {:,.0f}".replace(",", "X").replace(".", ",").replace("X", "."),
         "median_preco": "R$ {:,.0f}".replace(",", "X").replace(".", ",").replace("X", "."),
@@ -169,3 +175,45 @@ def render():
         use_container_width=True,
         height=260
     )
+
+    # =========================
+    # BAIRRO TABLE
+    # =========================
+
+    st.subheader("Tabela de bairros")
+
+    df_bairro = (
+    df.groupby(["Bairro", "Zona"])
+    .agg({
+        "Anúncios": "sum",
+
+        # weighted avg price/m²
+        "Preço médio m²": lambda x: (x * df.loc[x.index, "Anúncios"]).sum() 
+                                 / df.loc[x.index, "Anúncios"].sum(),
+
+        "Preço mediano": "median",
+        "Área mediana (m²)": "median",
+        "Quartos": "mean",
+        "Banheiros": "mean",
+        "Garagens": "mean",
+    })
+    .reset_index()
+    )
+
+    df_bairro = df_bairro.sort_values("Preço médio m²", ascending=False).reset_index(drop=True)
+
+    styled_df = df_bairro.style.format({
+    "Preço médio m²": format_currency,
+    "Preço mediano": format_currency,
+    "Área mediana (m²)": format_br_int,
+    "Quartos": format_br_float,
+    "Banheiros": format_br_float,
+    "Garagens": format_br_float,
+    "Anúncios": format_br_int,
+    })
+
+    st.dataframe(
+    styled_df,
+    use_container_width=True,
+    height=260
+    )   
