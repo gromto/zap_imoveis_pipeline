@@ -4,6 +4,8 @@ End-to-end data pipeline that scrapes real estate listings from Zap Imóveis, pr
 
 *DISCLAIMER: This project is intended for learning and portfolio purposes.*
 
+![Heatmap Example](example_gif.gif)
+
 ---
 
 ## 🚀 Overview
