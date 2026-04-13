@@ -29,7 +29,7 @@ This project implements a complete data pipeline:
 ├── sql/                # Raw SQL queries
 ├── imoveis_dbt/        # dbt project
 ├── data/               # Generated data artifacts (ignored in Git)
-├── app.py              # Streamlit app
+├── streamlit/          # Streamlit app
 ├── requirements.txt
 ├── .env.example
 └── README.md
@@ -86,27 +86,20 @@ Fill in required variables (API keys, configs).
 python -m flows.complete_pipeline
 ```
 
----
+## 🎦 Running visualization (Streamlit)
 
-## 🔄 Pipeline Steps
+### 1. change directory to Streamlit folder
 
-### 1. Scraping
+```bash
+cd streamlit
+```
 
-* Collects real estate listings
-* Extracts structured attributes (price, location, etc.)
-* Stores raw data (parquet/postgres)
+### 2. Streamlit run main.py
 
-### 2. Address Geocoding
+```bash
+streamlit run main.py
+```
 
-* Geocodes new addresses in the base
-
-### 3. Transformation (dbt)
-
-* Cleans data
-
-### 4. Output
-
-* Generates GeoJSON for visualization
 
 ## 👨‍💻 Author
 

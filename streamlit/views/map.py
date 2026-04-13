@@ -10,18 +10,28 @@ from services.queries import load_geojson, load_pois, load_icon
 def render():
 
     # =========================
-    # CSS (CRITICAL FIX)
+    # CSS
     # =========================
     st.markdown("""
     <style>
 
-    /* MAP RESPECTS SIDEBAR */
+    /* Let Streamlit control sidebar width */
+    section[data-testid="stSidebar"] {
+        width: 300px;
+    }
+
+    /* MAP */
     [data-testid="stDeckGlJsonChart"] {
         position: fixed;
         top: 0;
         bottom: 0;
-        left: 300px;
+
+        /* KEY FIX */
+        left: 0;
         right: 0;
+
+        width: 100vw;
+        height: 100vh;
     }
 
     /* FLOATING CONTROLS */
