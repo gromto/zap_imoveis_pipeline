@@ -155,8 +155,8 @@ def render():
     })
 
     styled_df = df.style.format({
-    "Preço médio m² (R$)": format_currency,
-    "Preço mediano (R$)": format_currency,
+    "Preço médio m²": format_currency,
+    "Preço mediano": format_currency,
     "Área mediana (m²)": format_br_int,
     "Quartos": format_br_float,
     "Banheiros": format_br_float,
